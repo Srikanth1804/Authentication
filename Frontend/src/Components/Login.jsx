@@ -5,9 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 const Login = () => {
   let [email, setemail] = useState("");
   let [password, setpassword] = useState("");
-  let Navigate = useNavigate();
   let [errorMessage, setErrorMessage] = useState(""); // State for error message
-
+  let Navigate = useNavigate();
   let Handlesubmit = (e) => {
     e.preventDefault();
     setErrorMessage(""); // Clear previous errors
@@ -24,8 +23,10 @@ const Login = () => {
           return; // Stop execution, don't navigate
         }
 
-        Getuser();
-        Navigate("/home");
+        localStorage.setItem("auth-token", res.data.info);
+        localStorage.setItem("role", res.data.role);
+
+        Navigate("/home", { replace: true });
       })
       .catch((e) => {
         console.log(e);
@@ -35,20 +36,6 @@ const Login = () => {
     setemail("");
     setpassword("");
   };
-
-  const Getuser = () => {
-    Axios.get("http://localhost:3001/api/get", { withCredentials: true })
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
-
-  useEffect(() => {
-    Getuser();
-  }, []);
 
   return (
     <div

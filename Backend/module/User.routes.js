@@ -6,13 +6,15 @@ const Getuser = require("./Controllers/Getuser");
 const logout = require("./Controllers/logout");
 const forget = require("./Controllers/forget");
 const reset = require("./Controllers/reset");
+const _delete = require("./Controllers/delete");
 
 let UserRouter = Express.Router();
 
 UserRouter.post("/register", register);
 UserRouter.post("/login", login);
-UserRouter.get("/get", verifytoken, Getuser);
+UserRouter.get("/get", Getuser);
 UserRouter.get("/logout", logout);
 UserRouter.post("/forgot-password", forget);
 UserRouter.post("/reset-password/:id/:token", reset);
+UserRouter.delete("/delete/:id", _delete);
 module.exports = UserRouter;

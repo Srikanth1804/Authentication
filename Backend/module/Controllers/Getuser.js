@@ -1,7 +1,7 @@
 let UserModel = require("../../model/User.model");
 
 module.exports = (req, res) => {
-  UserModel.findById(req.user.id)
+  UserModel.find({})
     .then((data) => {
       res.json({
         status: true,

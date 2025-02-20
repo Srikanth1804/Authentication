@@ -1,8 +1,10 @@
 import Cookie from "js-cookie";
 import Logout from "./Logout";
+import Getuser from "./Getuser";
 
 const Home = () => {
   let Username = Cookie.get("username");
+  let UserRole = localStorage.getItem("role"); // Get user role from local storage
 
   return (
     <div
@@ -19,6 +21,9 @@ const Home = () => {
           <Logout />
         </div>
       </div>
+
+      {/* Show Getuser only if the role is admin */}
+      {UserRole === "admin" && <Getuser />}
     </div>
   );
 };

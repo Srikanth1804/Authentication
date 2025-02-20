@@ -11,7 +11,8 @@ const Logout = () => {
         console.log(res.data.msg);
 
         if (res.data.status) {
-          Navigate("/");
+          localStorage.removeItem("auth-token");
+          Navigate("/", { replace: true });
         }
       })
       .catch((e) => {

@@ -23,9 +23,13 @@ module.exports = async (req, res) => {
       });
     }
 
-    let Token = await Jwt.sign({ id: Existuser.id }, process.env.SECRET_KEY, {
-      expiresIn: "1h",
-    });
+    let Token = await Jwt.sign(
+      { id: Existuser.id, role: Existuser.Role },
+      process.env.SECRET_KEY,
+      {
+        expiresIn: "1h",
+      }
+    );
 
     res.cookie("token", Token, {
       httponly: true,
@@ -40,6 +44,7 @@ module.exports = async (req, res) => {
     res.json({
       status: true,
       info: Token,
+      role: Existuser.Role,
       msg: "Token generated!",
     });
   } catch (error) {
