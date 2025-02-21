@@ -16,8 +16,8 @@ const allowedOrigins = [
 ];
 
 App.use(Express.json());
-app.use(
-  cors({
+App.use(
+  Cors({
     origin: function (origin, callback) {
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
@@ -42,7 +42,7 @@ Mongoose.connect(process.env.MONGODB_URI)
 //Routes
 App.use("/api", UserRouter);
 
-PORT = process.env.PORT;
+PORT = process.env.PORT || 3001;
 App.listen(PORT, () => {
   console.log(`Server running on the port:${PORT}`);
 });
