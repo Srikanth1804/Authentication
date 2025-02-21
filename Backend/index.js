@@ -13,20 +13,15 @@ let App = Express();
 const allowedOrigins = [
   "http://localhost:5173",
   "https://frontend-lf1yr64bh-srikanths-projects-8cc0fd19.vercel.app",
+  "https://authentication-fmorlao36-srikanths-projects-8cc0fd19.vercel.app",
 ];
 
 App.use(Express.json());
 App.use(
   Cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
+    origin: allowedOrigins, // Allow multiple origins
     methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true, //    Important for cookies/sessions
+    credentials: true, // Important for cookies/sessions
   })
 );
 App.use(Cookieparser());
