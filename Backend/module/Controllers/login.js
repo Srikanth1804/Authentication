@@ -32,12 +32,12 @@ module.exports = async (req, res) => {
     );
 
     res.cookie("token", Token, {
-      httpOnly: true,
+      httponly: true,
       secure: false,
       maxAge: 3600000,
     });
     res.cookie("username", Existuser.Name, {
-      httpOnly: false,
+      httponly: false,
       secure: true,
       sameSite: "None",
     });
