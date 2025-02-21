@@ -8,7 +8,7 @@ const Getuser = () => {
   console.log("User Role:", userRole);
 
   useEffect(() => {
-    Axios.get(`${API_ENDPOINT}/api/get`)
+    Axios.get(`${API_ENDPOINT}/api/get`, { withCredentials: true })
       .then((res) => {
         console.log("Fetched Data:", res.data);
         setData(res.data.info ? res.data.info : []); // Ensure valid data

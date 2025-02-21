@@ -39,7 +39,7 @@ module.exports = async (req, res) => {
     res.cookie("username", Existuser.Name, {
       httpOnly: false,
       secure: true,
-      sameSite,
+      sameSite: "None",
     });
     res.json({
       status: true,
