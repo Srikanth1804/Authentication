@@ -10,11 +10,23 @@ let App = Express();
 
 //middlewares
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://frontend-fk852a7rh-srikanths-projects-8cc0fd19.vercel.app",
+];
+
 App.use(Express.json());
-App.use(
-  Cors({
-    origin: "*",
-    credentials: true,
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true, //    Important for cookies/sessions
   })
 );
 App.use(Cookieparser());
