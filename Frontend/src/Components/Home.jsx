@@ -1,12 +1,17 @@
-import Cookie from "js-cookie";
+import React, { useEffect, useState } from "react";
 import Logout from "./Logout";
 import Getuser from "./Getuser";
 
 const Home = () => {
-  let Username = localStorage.getItem("name");
-  let UserRole = localStorage.getItem("role"); // Get user role from local storage
-  console.log(Username);
-  console.log(UserRole);
+  const [Username, setUsername] = useState("");
+  const [UserRole, setUserRole] = useState("");
+
+  useEffect(() => {
+    setUsername(localStorage.getItem("name") || "User"); // Default to "User" if null
+    setUserRole(localStorage.getItem("role") || "Guest");
+  }, []);
+
+  console.log("Fetched from localStorage:", { Username, UserRole });
 
   return (
     <div

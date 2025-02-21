@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import API_ENDPOINT from "./General";
@@ -8,35 +8,43 @@ const Login = () => {
   let [password, setpassword] = useState("");
   let [errorMessage, setErrorMessage] = useState(""); // State for error message
   let Navigate = useNavigate();
+
   let Handlesubmit = (e) => {
     e.preventDefault();
     setErrorMessage(""); // Clear previous errors
 
     let Data = { email, password };
 
-    Axios.post(`${API_ENDPOINT}/api/login`, Data, {
-      withCredentials: true,
-    })
+    Axios.post(`${API_ENDPOINT}/api/login`, Data, { withCredentials: true })
       .then((res) => {
         console.log(res.data.msg);
+
         if (res.data.status === false) {
           setErrorMessage(res.data.msg); // Show error message
           return; // Stop execution, don't navigate
         }
 
+        // Store user details properly
         localStorage.setItem("auth-token", res.data.info);
         localStorage.setItem("role", res.data.role);
         localStorage.setItem("name", res.data.name);
 
+        console.log("Stored in localStorage:", {
+          role: res.data.role,
+          name: res.data.name,
+        });
+
+        // Navigate after storing data
         Navigate("/home", { replace: true });
+
+        // Reset form fields
+        setemail("");
+        setpassword("");
       })
       .catch((e) => {
         console.log(e);
         setErrorMessage("Something went wrong!"); // Handle unexpected errors
       });
-
-    setemail("");
-    setpassword("");
   };
 
   return (
@@ -68,10 +76,6 @@ const Login = () => {
             onChange={(e) => setemail(e.target.value)}
             required
             value={email}
-            style={{
-              borderColor: "#007bff",
-              boxShadow: "0 0 5px rgba(0, 123, 255, 0.5)",
-            }}
           />
         </div>
 
@@ -87,42 +91,22 @@ const Login = () => {
             onChange={(e) => setpassword(e.target.value)}
             required
             value={password}
-            style={{
-              borderColor: "#007bff",
-              boxShadow: "0 0 5px rgba(0, 123, 255, 0.5)",
-            }}
           />
         </div>
 
-        <button
-          type="submit"
-          className="btn btn-primary w-100 fw-bold"
-          style={{
-            backgroundColor: "#007bff",
-            borderColor: "#007bff",
-            padding: "10px",
-          }}
-        >
+        <button type="submit" className="btn btn-primary w-100 fw-bold">
           Login
         </button>
 
         <div className="text-center mt-3">
-          <p style={{ fontSize: "14px", color: "#555" }}>
+          <p style={{ fontSize: "14px" }}>
             Don't have an account?{" "}
-            <Link
-              to="/register"
-              className="fw-bold"
-              style={{ color: "#007bff", textDecoration: "none" }}
-            >
+            <Link to="/register" className="fw-bold">
               Sign up
             </Link>
           </p>
-          <p style={{ fontSize: "14px", color: "#555" }}>
-            <Link
-              to="/forgot-password"
-              className="fw-bold"
-              style={{ color: "#dc3545", textDecoration: "none" }}
-            >
+          <p style={{ fontSize: "14px" }}>
+            <Link to="/forgot-password" className="fw-bold text-danger">
               Forgot Password?
             </Link>
           </p>
