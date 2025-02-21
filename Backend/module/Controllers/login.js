@@ -40,6 +40,7 @@ module.exports = async (req, res) => {
       httponly: false,
       secure: true,
       sameSite: "None",
+      path: "/",
     });
     res.json({
       status: true,
