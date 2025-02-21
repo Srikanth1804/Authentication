@@ -12,7 +12,7 @@ let App = Express();
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://frontend-fk852a7rh-srikanths-projects-8cc0fd19.vercel.app",
+  "https://frontend-lf1yr64bh-srikanths-projects-8cc0fd19.vercel.app",
 ];
 
 App.use(Express.json());
