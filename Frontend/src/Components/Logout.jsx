@@ -1,12 +1,13 @@
 import React from "react";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
+import API_ENDPOINT from "./General";
 
 const Logout = () => {
   let Navigate = useNavigate();
 
   let Handlelogout = (e) => {
-    Axios.get("http://localhost:3001/api/logout", { withCredentials: true })
+    Axios.get(`${API_ENDPOINT}/api/logout`, { withCredentials: true })
       .then((res) => {
         console.log(res.data.msg);
 

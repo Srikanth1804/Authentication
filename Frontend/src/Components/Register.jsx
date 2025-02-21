@@ -3,6 +3,7 @@ import Axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import API_ENDPOINT from "./General";
 
 const Register = () => {
   let [name, setName] = useState("");
@@ -15,7 +16,7 @@ const Register = () => {
   let Handlesubmit = (e) => {
     e.preventDefault();
 
-    Axios.post("http://localhost:3001/api/register", {
+    Axios.post(`${API_ENDPOINT}/api/register`, {
       name,
       email,
       password,

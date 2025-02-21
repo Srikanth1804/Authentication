@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import API_ENDPOINT from "./General";
 
 const Forget = () => {
   let [email, setEmail] = useState("");
@@ -9,7 +10,7 @@ const Forget = () => {
   let handleSubmit = (e) => {
     e.preventDefault();
 
-    Axios.post("http://localhost:3001/api/forgot-password", { email })
+    Axios.post(`${API_ENDPOINT}/api/forgot-password`, { email })
       .then((res) => {
         if (res.data.status) {
           toast.success("📩 Reset link sent to your email!", {

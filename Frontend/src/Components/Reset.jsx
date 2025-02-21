@@ -3,6 +3,7 @@ import Axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import API_ENDPOINT from "./General";
 
 const Reset = () => {
   let [password, setPassword] = useState("");
@@ -12,7 +13,7 @@ const Reset = () => {
   let handleSubmit = (e) => {
     e.preventDefault();
 
-    Axios.post(`http://localhost:3001/api/reset-password/${id}/${token}`, {
+    Axios.post(`${API_ENDPOINT}/api/reset-password/${id}/${token}`, {
       password,
     })
       .then((res) => {

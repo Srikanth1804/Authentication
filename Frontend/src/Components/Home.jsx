@@ -5,6 +5,8 @@ import Getuser from "./Getuser";
 const Home = () => {
   let Username = Cookie.get("username");
   let UserRole = localStorage.getItem("role"); // Get user role from local storage
+  console.log(Username);
+  console.log(UserRole);
 
   return (
     <div
@@ -14,7 +16,7 @@ const Home = () => {
       <div className="row align-items-center">
         <div className="col">
           <h4 className="text-primary" style={{ fontWeight: "bold" }}>
-            Welcome, <span className="text-dark">{Username}</span> 🎉
+            Welcome {UserRole}, <span className="text-dark">{Username}</span> 🎉
           </h4>
         </div>
         <div className="col text-end">

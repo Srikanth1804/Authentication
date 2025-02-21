@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import API_ENDPOINT from "./General";
 
 const Login = () => {
   let [email, setemail] = useState("");
@@ -13,7 +14,7 @@ const Login = () => {
 
     let Data = { email, password };
 
-    Axios.post("http://localhost:3001/api/login", Data, {
+    Axios.post(`${API_ENDPOINT}/api/login`, Data, {
       withCredentials: true,
     })
       .then((res) => {
