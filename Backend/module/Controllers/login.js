@@ -40,12 +40,12 @@ module.exports = async (req, res) => {
       httponly: false,
       secure: true,
       sameSite: "None",
-      path: "/",
     });
     res.json({
       status: true,
       info: Token,
       role: Existuser.Role,
+      name: Existuser.Name,
       msg: "Token generated!",
     });
   } catch (error) {

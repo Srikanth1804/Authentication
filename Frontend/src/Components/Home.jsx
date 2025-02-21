@@ -3,7 +3,7 @@ import Logout from "./Logout";
 import Getuser from "./Getuser";
 
 const Home = () => {
-  let Username = Cookie.get("username");
+  let Username = localStorage.getItem("name");
   let UserRole = localStorage.getItem("role"); // Get user role from local storage
   console.log(Username);
   console.log(UserRole);

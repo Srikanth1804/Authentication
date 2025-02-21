@@ -26,6 +26,7 @@ const Login = () => {
 
         localStorage.setItem("auth-token", res.data.info);
         localStorage.setItem("role", res.data.role);
+        localStorage.setItem("name", res.data.name);
 
         Navigate("/home", { replace: true });
       })
