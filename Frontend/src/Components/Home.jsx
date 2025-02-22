@@ -7,7 +7,7 @@ const Home = () => {
   const [UserRole, setUserRole] = useState("");
 
   useEffect(() => {
-    setUsername(localStorage.getItem("name") || "User"); // Default to "User" if null
+    setUsername(localStorage.getItem("name") || "User");
     setUserRole(localStorage.getItem("role") || "Guest");
   }, []);
 
