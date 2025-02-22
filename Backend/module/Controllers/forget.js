@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
       });
     }
 
-    let Resetlink = `https://authentication-fmorlao36-srikanths-projects-8cc0fd19.vercel.app//reset-password/${id}/${Token}`;
+    let Resetlink = `https://authentication-fmorlao36-srikanths-projects-8cc0fd19.vercel.app/reset-password/${id}/${Token}`;
 
     var transporter = nodemailer.createTransport({
       service: "gmail",
